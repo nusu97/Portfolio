@@ -1,0 +1,659 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Nuseyba Mohammed - Computer Science Student & Developer</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        :root {
+            --primary-color: #0f3460;
+            --secondary-color: #00d4ff;
+            --accent-color: #ff6b6b;
+            --text-dark: #1a1a1a;
+            --text-light: #f5f5f5;
+            --bg-light: #f9f9f9;
+            --shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(15, 52, 96, 0.95);
+            backdrop-filter: blur(10px);
+            padding: 1rem 2rem;
+            z-index: 1000;
+            box-shadow: var(--shadow);
+        }
+
+        nav ul {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        nav a {
+            color: var(--text-light);
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        nav a:hover {
+            color: var(--secondary-color);
+        }
+
+        nav a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--secondary-color);
+            transition: width 0.3s ease;
+        }
+
+        nav a:hover::after {
+            width: 100%;
+        }
+
+        /* Header/Hero */
+        .hero {
+            background: linear-gradient(135deg, var(--primary-color) 0%, #1a5276 100%);
+            color: var(--text-light);
+            padding: 120px 2rem 80px;
+            text-align: center;
+            margin-top: 60px;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+            font-weight: 700;
+            letter-spacing: -1px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.3rem;
+            color: var(--secondary-color);
+            margin-bottom: 2rem;
+            font-weight: 300;
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto 2rem;
+            opacity: 0.95;
+        }
+
+        .cta-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.75rem 2rem;
+            border: none;
+            border-radius: 5px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: var(--secondary-color);
+            color: var(--primary-color);
+        }
+
+        .btn-primary:hover {
+            background: #00b8d4;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(0, 212, 255, 0.3);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: var(--text-light);
+            border: 2px solid var(--text-light);
+        }
+
+        .btn-secondary:hover {
+            background: var(--text-light);
+            color: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Container */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 2rem;
+        }
+
+        /* Section Styles */
+        section {
+            padding: 80px 2rem;
+        }
+
+        section h2 {
+            font-size: 2.5rem;
+            margin-bottom: 3rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 1rem;
+        }
+
+        section h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: var(--secondary-color);
+            border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: white;
+        }
+
+        .about-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        .about-text h3 {
+            font-size: 1.8rem;
+            margin-bottom: 1rem;
+            color: var(--primary-color);
+        }
+
+        .about-text p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        /* Skills Section */
+        #skills {
+            background: var(--primary-color);
+            color: var(--text-light);
+        }
+
+        #skills h2,
+        #skills h2::after {
+            color: var(--text-light);
+            background: var(--secondary-color);
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .skill-card {
+            background: rgba(255, 255, 255, 0.1);
+            padding: 1.5rem;
+            border-radius: 8px;
+            border-left: 4px solid var(--secondary-color);
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .skill-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 212, 255, 0.2);
+        }
+
+        .skill-card h3 {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: var(--secondary-color);
+        }
+
+        .skill-card p {
+            font-size: 0.95rem;
+            opacity: 0.9;
+        }
+
+        /* Experience Section */
+        #experience {
+            background: white;
+        }
+
+        .experience-item {
+            background: white;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 4px solid var(--secondary-color);
+            box-shadow: var(--shadow);
+            border-radius: 5px;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 15px 50px rgba(0, 212, 255, 0.15);
+        }
+
+        .experience-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: start;
+            margin-bottom: 1rem;
+        }
+
+        .experience-header h3 {
+            font-size: 1.3rem;
+            color: var(--primary-color);
+        }
+
+        .experience-header .date {
+            color: var(--secondary-color);
+            font-weight: 600;
+        }
+
+        .experience-company {
+            color: #666;
+            font-style: italic;
+            margin-bottom: 0.5rem;
+        }
+
+        .experience-item ul {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .experience-item li {
+            padding: 0.5rem 0;
+            padding-left: 1.5rem;
+            position: relative;
+            color: #555;
+        }
+
+        .experience-item li::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--secondary-color);
+        }
+
+        /* Education Section */
+        #education {
+            background: var(--bg-light);
+        }
+
+        .education-item {
+            background: white;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-radius: 5px;
+            box-shadow: var(--shadow);
+            border-top: 4px solid var(--secondary-color);
+        }
+
+        .education-item h3 {
+            color: var(--primary-color);
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .education-item p {
+            color: #666;
+            margin-bottom: 0.3rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--primary-color);
+            color: var(--text-light);
+            text-align: center;
+        }
+
+        #contact h2,
+        #contact h2::after {
+            color: var(--text-light);
+            background: var(--secondary-color);
+        }
+
+        .contact-info {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+
+        .contact-item {
+            padding: 1.5rem;
+        }
+
+        .contact-item a {
+            color: var(--secondary-color);
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .contact-item a:hover {
+            color: var(--text-light);
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #051f2b;
+            color: var(--text-light);
+            text-align: center;
+            padding: 2rem;
+            font-size: 0.9rem;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav ul {
+                gap: 1rem;
+                font-size: 0.9rem;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero .subtitle {
+                font-size: 1rem;
+            }
+
+            .about-content {
+                grid-template-columns: 1fr;
+            }
+
+            .experience-header {
+                flex-direction: column;
+            }
+
+            .experience-header .date {
+                margin-top: 0.5rem;
+            }
+
+            section h2 {
+                font-size: 1.8rem;
+            }
+        }
+
+        /* Scroll to top button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            background: var(--secondary-color);
+            color: var(--primary-color);
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .scroll-top.show {
+            opacity: 1;
+            visibility: visible;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <ul>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Skills</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Nuseyba Mohammed</h1>
+        <p class="subtitle">Computer Science Student | Full Stack Developer | AI Enthusiast</p>
+        <p>Building scalable solutions with Python, JavaScript, and advanced data analytics. Passionate about distributed systems and machine learning.</p>
+        <div class="cta-buttons">
+            <a href="#contact" class="btn btn-primary">Get in Touch</a>
+            <a href="https://www.linkedin.com/in/nuseyba/" target="_blank" class="btn btn-secondary">LinkedIn</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <div class="container">
+            <h2>About Me</h2>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Computer Science Student with a Passion for Problem-Solving</h3>
+                    <p>I'm a dedicated Computer Science student at Toronto Metropolitan University with a minor in Mathematics, focused on building efficient solutions for complex problems at scale.</p>
+                    <p>With hands-on experience in full-stack development, machine learning training, and data analytics, I'm driven by a curiosity to understand how systems work and a commitment to writing clean, maintainable code.</p>
+                    <p>When I'm not coding, you can find me exploring new algorithms, learning emerging technologies, or collaborating with teams to solve real-world challenges.</p>
+                </div>
+                <div class="about-stats">
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--secondary-color); margin-bottom: 1rem;">5+</div>
+                    <p style="font-size: 1.1rem; color: var(--primary-color); font-weight: 600;">Programming Languages</p>
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--secondary-color); margin-bottom: 1rem; margin-top: 2rem;">8</div>
+                    <p style="font-size: 1.1rem; color: var(--primary-color); font-weight: 600;">Relevant Math Courses</p>
+                    <div style="font-size: 3rem; font-weight: bold; color: var(--secondary-color); margin-bottom: 1rem; margin-top: 2rem;">3+</div>
+                    <p style="font-size: 1.1rem; color: var(--primary-color); font-weight: 600;">Years of Learning</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <div class="container">
+            <h2>Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h3>Programming Languages</h3>
+                    <p>Python, JavaScript, Java, SQL, Common Lisp, C, UNIX</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Full Stack Development</h3>
+                    <p>HTML5, CSS3, React.js, Node.js, Express, REST APIs, Git</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Data & Analytics</h3>
+                    <p>Data Structures, Algorithms, Statistical Analysis, Machine Learning, Classification, Clustering</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Mathematical Expertise</h3>
+                    <p>Discrete Mathematics, Graph Theory, Stochastic Processes, Probability & Statistics, Linear Algebra</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Core Competencies</h3>
+                    <p>Problem-Solving, Critical Thinking, System Design, Collaborative Development, Communication</p>
+                </div>
+                <div class="skill-card">
+                    <h3>Advanced Topics</h3>
+                    <p>Distributed Systems, Network Analysis, Algorithmic Complexity, Time Series Analysis</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="container">
+            <h2>Experience</h2>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Circulation Desk Assistant</h3>
+                        <p class="experience-company">Toronto Metropolitan University</p>
+                    </div>
+                    <span class="date">May 2025 - Present</span>
+                </div>
+                <ul>
+                    <li>Coordinate with multiple departments to resolve technical and non-technical inquiries, developing problem-solving skills applicable to software engineering workflows</li>
+                    <li>Manage high-volume information requests, demonstrating attention to detail and strong communication abilities in fast-paced environments</li>
+                    <li>Maintain organized systems for tracking visitor information and campus operations, reflecting commitment to clean and efficient processes</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>AI Trainer / Mathematics</h3>
+                        <p class="experience-company">Outlier (Remote)</p>
+                    </div>
+                    <span class="date">June 2024 - October 2024</span>
+                </div>
+                <ul>
+                    <li>Trained machine learning models by evaluating AI-generated solutions, identifying errors in algorithmic reasoning, and providing detailed feedback</li>
+                    <li>Applied expertise in data structures and algorithmic techniques to assess solution correctness and guide model improvements</li>
+                    <li>Worked with large-scale data sets, developing quality assurance processes to handle complex problem-solving at scale</li>
+                </ul>
+            </div>
+
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <h3>Information Desk Assistant</h3>
+                        <p class="experience-company">Toronto Metropolitan University</p>
+                    </div>
+                    <span class="date">September 2024 - April 2025</span>
+                </div>
+                <ul>
+                    <li>Provided comprehensive support to diverse user groups, honing interpersonal skills and ability to communicate complex information clearly</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="education">
+        <div class="container">
+            <h2>Education</h2>
+
+            <div class="education-item">
+                <h3>Bachelor of Science - Computer Science</h3>
+                <p><strong>Toronto Metropolitan University</strong> | January 2024 - January 2027</p>
+                <p>Minor in Mathematics</p>
+            </div>
+
+            <div class="education-item">
+                <h3>Certificate in Full Stack Development</h3>
+                <p><strong>Cantek IT Skill Development Program</strong> | June 2023 - August 2023</p>
+                <p>Built end-to-end full-stack applications using HTML5, CSS3, JavaScript, Node.js, and SQL</p>
+            </div>
+
+            <div class="education-item">
+                <h3>Relevant Coursework</h3>
+                <p>Discrete Mathematics I & II • Stochastic Processes • Advanced Data Analytics • Probability & Statistics I & II • Linear Algebra • Computational Methods</p>
+            </div>
+
+            <div class="education-item">
+                <h3>Professional Development Award</h3>
+                <p><strong>American Sign Language (ASL)</strong> | Toronto Metropolitan University | 2025</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="container">
+            <h2>Let's Connect</h2>
+            <p style="font-size: 1.1rem; margin-bottom: 2rem;">I'm always interested in learning about new opportunities and collaborating on interesting projects.</p>
+            <div class="contact-info">
+                <div class="contact-item">
+                    <p>📧 Email</p>
+                    <a href="mailto:nuseyba.mohammed@torontomu.ca">nuseyba.mohammed@torontomu.ca</a>
+                </div>
+                <div class="contact-item">
+                    <p>💼 LinkedIn</p>
+                    <a href="https://www.linkedin.com/in/nuseyba/" target="_blank">linkedin.com/in/nuseyba</a>
+                </div>
+                <div class="contact-item">
+                    <p>🐙 GitHub</p>
+                    <a href="https://github.com" target="_blank">github.com</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Nuseyba Mohammed. All rights reserved. Built with HTML, CSS, and passion.</p>
+    </footer>
+
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top" id="scrollTop">↑</div>
+
+    <script>
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+
+        // Scroll to top button functionality
+        const scrollTop = document.getElementById('scrollTop');
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                scrollTop.classList.add('show');
+            } else {
+                scrollTop.classList.remove('show');
+            }
+        });
+
+        scrollTop.addEventListener('click', () => {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        });
+    </script>
+</body>
+</html>
