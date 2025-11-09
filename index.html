@@ -518,6 +518,36 @@
         .btn-primary {
             animation: pulse 2s infinite;
         }
+
+        /* Projects */
+        #projects { background: white; }
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+        .project-card {
+            background: linear-gradient(145deg, #ffffff 0%, #f0f4f9 100%);
+            padding: 1.75rem 1.5rem 1.6rem;
+            border-radius: 10px;
+            position: relative;
+            box-shadow: var(--shadow);
+            border: 1px solid #e2e8f0;
+            display: flex;
+            flex-direction: column;
+            gap: 0.9rem;
+            transition: all .35s ease;
+        }
+        .project-card:hover { transform: translateY(-6px); box-shadow: var(--shadow-large); }
+        .project-header { display: flex; align-items: center; justify-content: space-between; }
+        .project-header h3 { margin: 0; font-size: 1.25rem; color: var(--primary-color); }
+        .badge { background: var(--secondary-color); color: var(--primary-color); padding: 4px 10px; border-radius: 18px; font-size: 0.7rem; letter-spacing: .5px; font-weight: 600; box-shadow: 0 2px 8px rgba(0, 212, 255, .3); }
+        .badge.muted { background: #e2e8f0; color: #475569; box-shadow: none; }
+        .project-desc { font-size: .95rem; color: #55637a; line-height: 1.55; }
+        .stack { list-style: none; display: flex; flex-wrap: wrap; gap: 6px; margin: 0; padding: 0; }
+        .stack li { background: var(--primary-light); color: var(--secondary-color); padding: 4px 10px; font-size: 0.65rem; border-radius: 12px; letter-spacing: .5px; font-weight: 600; }
+        .project-links { display: flex; gap: .6rem; flex-wrap: wrap; margin-top: auto; }
+        .project-links .btn { flex: 1; text-align: center; }
     </style>
 </head>
 <body>
@@ -526,6 +556,7 @@
         <ul>
             <li><a href="#about">About</a></li>
             <li><a href="#skills">Skills</a></li>
+            <li><a href="#projects">Projects</a></li>
             <li><a href="#experience">Experience</a></li>
             <li><a href="#education">Education</a></li>
             <li><a href="#contact">Contact</a></li>
@@ -596,6 +627,52 @@
                     <h3>Advanced Topics</h3>
                     <p>Distributed Systems, Network Analysis, Algorithmic Complexity, Time Series Analysis</p>
                 </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="container">
+            <h2>Projects</h2>
+
+            <div class="project-grid">
+                <!-- Amharic Wordle Card -->
+                <article class="project-card fade-in" data-observe>
+                    <div class="project-header">
+                        <h3>Amharic Wordle</h3>
+                        <span class="badge">Featured</span>
+                    </div>
+                    <p class="project-desc">A fully client-side Wordle-style game for Amharic words with flip animations, toasts, help modal, and confetti — deployed on Vercel.</p>
+
+                    <ul class="stack">
+                        <li>HTML</li>
+                        <li>CSS</li>
+                        <li>JavaScript</li>
+                        <li>Vercel</li>
+                    </ul>
+
+                    <div class="project-links">
+                        <a class="btn btn-primary" href="https://amharic-wordle-game.vercel.app/" target="_blank" rel="noopener noreferrer">Live Demo</a>
+                        <a class="btn btn-primary" href="https://github.com/nusu97/Amharic-Wordle-Game" target="_blank" rel="noopener noreferrer">Source Code</a>
+                    </div>
+                </article>
+
+                <!-- Placeholder for additional projects -->
+                <!-- <article class="project-card fade-in" data-observe>
+                    <div class="project-header">
+                        <h3>Project Name</h3>
+                        <span class="badge muted">Coming Soon</span>
+                    </div>
+                    <p class="project-desc">Brief description about another project. Replace this card with your next build.</p>
+                    <ul class="stack">
+                        <li>Tech 1</li>
+                        <li>Tech 2</li>
+                    </ul>
+                    <div class="project-links">
+                        <a class="btn btn-secondary" href="#">Details</a>
+                    </div>
+                </article> -->
             </div>
         </div>
     </section>
@@ -746,8 +823,8 @@
             });
         }, observerOptions);
 
-        // Observe all animated elements
-        document.querySelectorAll('.skill-card, .experience-item, .education-item, .contact-item').forEach(el => {
+        // Observe all animated elements (including project cards)
+        document.querySelectorAll('.skill-card, .experience-item, .education-item, .contact-item, [data-observe]').forEach(el => {
             el.style.opacity = '0';
             el.style.transform = 'translateY(30px)';
             el.style.transition = 'opacity 0.6s ease-out, transform 0.6s ease-out';
